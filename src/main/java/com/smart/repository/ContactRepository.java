@@ -1,4 +1,4 @@
-package com.smart.dao;
+package com.smart.repository;
 
 
 import java.util.List;
