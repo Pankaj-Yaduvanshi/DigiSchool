@@ -1,9 +1,8 @@
 package com.smart.controller;
-import com.smart.entities.Option;
-import com.smart.entities.Questionnaire;
+//import com.smart.entities.Option;
+import com.smart.entities.Assignment;
 import com.smart.exceptions.ApiResponse;
-import com.smart.repository.QuestionnaireRepository;
-import com.smart.service.QuestionnaireService;
+import com.smart.service.AssignmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/questionnaire")
-public class QuestionnaireController {
+public class AssignmentController {
     @Autowired
-    private QuestionnaireService questionnaireService;
+    private AssignmentService questionnaireService;
     @PostMapping("/create")
-    public ResponseEntity<Questionnaire> createQuestionnaire(@RequestBody Questionnaire questionnaire){
-        Questionnaire savedQuestionnaire = questionnaireService.saveQuestionnaire(questionnaire);
+    public ResponseEntity<Assignment> createQuestionnaire(@RequestBody Assignment questionnaire){
+        Assignment savedQuestionnaire = questionnaireService.saveQuestionnaire(questionnaire);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedQuestionnaire);
     }
     @DeleteMapping("/delete{qnId}")

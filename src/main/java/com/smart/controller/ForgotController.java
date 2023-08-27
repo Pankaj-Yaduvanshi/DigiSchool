@@ -15,7 +15,7 @@ import com.smart.service.EmailService;
 @Controller
 public class ForgotController {
 	Random random = new Random(1000);
-	
+
 	@Autowired
 	private EmailService emailService;
 	
@@ -30,7 +30,7 @@ public class ForgotController {
 	@RequestMapping("/forgot")
 	public String openEmailForm()
 	{
-		return "forgot_email_form";
+		return "common/forgot_email_form";
 	}
 	
 	@PostMapping("/send-otp")
@@ -67,14 +67,14 @@ public class ForgotController {
 			
 			session.setAttribute("myotp", otp);
 			session.setAttribute("email", email);
-			return "verify_otp";
+			return "common/verify_otp";
 			
 		}else
 		{	
 			
 			session.setAttribute("message", "Check your email id !!");
 			
-			return "forgot_email_form";
+			return "common/forgot_email_form";
 		}
 		
 		
@@ -100,7 +100,7 @@ public class ForgotController {
 				//send error message
 				session.setAttribute("message", "User does not exits with this email !!");
 				
-				return "forgot_email_form";
+				return "common/forgot_email_form";
 			}else
 			{
 				//
@@ -110,7 +110,7 @@ public class ForgotController {
 			
 			
 			
-			return "password_change_form";
+			return "common/password_change_form";
 		}else
 		{
 			session.setAttribute("message", "You have entered wrong otp !!");
@@ -127,7 +127,6 @@ public class ForgotController {
 		user.setPassword(this.bcrypt.encode(newpassword));
 		this.userRepsitory.save(user);
 		return "redirect:/signin?change=password changed successfully..";
-		
 	}
 	
 	
