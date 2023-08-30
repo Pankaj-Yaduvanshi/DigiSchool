@@ -1,6 +1,6 @@
 package com.smart.serviceImp;
 
-import com.smart.entities.Option;
+//import com.smart.entities.Option;
 import com.smart.entities.Question;
 import com.smart.exceptions.ResourceNotFoundException;
 import com.smart.repository.QuestionRepository;
@@ -28,8 +28,8 @@ public class QuestionServiceImp implements QuestionService {
         return questionRepository.findById(qId).orElseThrow(()-> new ResourceNotFoundException("Question Not found"));
     }
 
-    @Override
-    public List<Option> getOptionByQuestion(Integer qId) {
-        return null;
-    }
+//    @Override
+//    public List<Option> getOptionByQuestion(Integer qId) {
+//        return null;
+//    }
 }

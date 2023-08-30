@@ -42,10 +42,8 @@ public class User {
 	private String imageUrl;
 	@Column(length = 500)
 	private String about;
-	
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Contact> contacts=new ArrayList<>();
-
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role

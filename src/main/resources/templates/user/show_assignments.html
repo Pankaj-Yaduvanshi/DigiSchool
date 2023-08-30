@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="trainer/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8"/>
+    <title>this is home page</title>
+</head>
+<body>
+<section>
+    <div class="card mr-3 ml-3">
+        <div class="card-body">
+            <h1 class="text-center">Assignments</h1>
+            <!-- search -->
+            <div class="search-container my-3">
+                <input onkeyup="search()" id="search-input" type="text" class="form-control"
+                       placeholder="Search your assignment"/>
+                <div class="search-result">
+                    <!--  result goes here -->
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover ">
+                    <thead class="thead-light ">
+                    <tr>
+                        <th scope="col">Sr No.</th>
+                        <th scope="col">SOP Number</th>
+                        <th scope="col">SOP Title</th>
+                        <th scope="col">Assignment No.</th>
+                        <th scope="col">Assignment Version</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="a, iterator : ${assignments}">
+                        <th scope="row" th:text="${iterator.index + 1}"></th>
+                        <td>
+                            <a href="#" th:href="@{'/a/trainer/'+${a.aId}}">
+                                <span th:text="${a.sopNumber}"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <span th:text="${a.sopTitle}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${a.questionnaireNumber}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${a.questionnaireVersion}"></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--  pagination part -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li th:if="${currentPage != 0}" class="page-item"><a
+                            th:href="@{'/a/trainer/show-assignments/'+${currentPage-1}}" class="page-link" href="#">Previous</a>
+                    </li>
+                    <li th:classappend="${currentPage==i-1?'active':''}"
+                        th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a
+                            th:href="@{'/a/trainer/show-assignments/'+${i-1}}" class="page-link" href="#"><span
+                            th:text="${i}"></span></a></li>
+                    <li th:if="${currentPage+1 != totalPages}" class="page-item"><a
+                            th:href="@{'/a/trainer/show-assignments/'+${currentPage+1}}" class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <script>
+        $(document).ready(() => {
+          $(".item").removeClass("active");
+          $("#contacts-link").addClass("active");
+        });
+
+    </script>
+</section>
+</body>
+</html>

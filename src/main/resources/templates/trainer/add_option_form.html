@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="trainer/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8"/>
+    <title>this is home page</title></head>
+<body>
+<section>
+    <div class="card mr-3 ml-3">
+        <div class="card-body"><h1 class="text-center">Add Assignment</h1>
+            <div class="container-fluid mt-1">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <form th:object="${assignment}" enctype="multipart/form-data" method="POST"
+                              th:action="@{/a/trainer/process-assignment}" class="mt-2">
+                            <!-- SOP Number  -->
+                            <div class="input-group mt-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text "><i class="fa fa-plus"></i></div>
+                                </div>
+                                <input required type="text" id="sopNumber" name="sopNumber"
+                                       placeholder="Enter SOP Number here" class="form-control"/>
+                            </div>
+                            <!-- SOP Title -->
+                            <div class="input-group mt-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text "><i class="fa fa-plus"></i></div>
+                                </div>
+                                <input required type="text" id="sopTitle" name="sopTitle"
+                                       placeholder="Enter SOP Title" class="form-control"/>
+                            </div>
+                            <!-- Assignment Number  -->
+                            <div class="input-group mt-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text "><i class="fa fa-plus"></i></div>
+                                </div>
+                                <input required type="text" id="assignment" name="questionnaireNumber"
+                                       placeholder="Enter Assignment Number Here"
+                                       class="form-control"/></div>
+                            <!-- Assignment Number  -->
+                            <div class="input-group mt-3">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text "><i class="fa fa-plus"></i></div>
+                                </div>
+                                <input required type="text" id="version" name="questionnaireVersion"
+                                       placeholder="Enter Assignment Version Here"
+                                       class="form-control"/></div>
+                            <div class="container text-center">
+                                <button type="submit" class="btn btn-outline-primary mt-3">Save Assignment</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

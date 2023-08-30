@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,7 +22,11 @@ public class Question {
     @OneToMany(mappedBy = "question",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Option> options=new ArrayList<>();
     @ManyToOne
-    @JsonIgnore
-    private Questionnaire questionnaire;
+    private Assignment assignment;
+    @Override
+    public boolean equals(Object obj) {
+        // TODO Auto-generated method stub
+        return this.qId==((Question)obj).getQId();
+    }
 
 }
