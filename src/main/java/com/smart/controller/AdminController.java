@@ -3,7 +3,6 @@ package com.smart.controller;
 import com.smart.entities.User;
 import com.smart.helper.Message;
 import com.smart.repository.AssignmentRepository;
-import com.smart.repository.ContactRepository;
 import com.smart.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,8 +20,6 @@ public class AdminController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private ContactRepository contactRepository;
     @Autowired
     private AssignmentRepository assignmentRepository;
 

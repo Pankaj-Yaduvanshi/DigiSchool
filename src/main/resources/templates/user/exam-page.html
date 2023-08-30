@@ -7,6 +7,7 @@
 </head>
 <body>
 <section>
+<<<<<<< HEAD
     <div class="quswrap">
         <div class="quslist">
             <div class="qus_txt">1. When a number is subtracted from the number 8,12 and 20, the remainders are in continued proportion, Find the number ?</div>
@@ -30,5 +31,64 @@
         <br><br>
 </div>
 </section>
+=======
+    <form id="quizForm" th:action="@{/a/user/submit-quiz}" method="post">
+        <div class="quswrap" >
+            <div class="quslist" th:each="q, iterator : ${assignment.questions}" style="width: 100%">
+                <div class="qus_txt">
+                    <div class=" text-center">
+                        <h5>
+                            <span>Question </span>
+                            <span th:text="${iterator.index + 1}"></span>
+                        </h5>
+                    </div>
+                    <br>
+                    <p><span th:text="${q.description}"></span></p>
+                </div>
+                <div class="optrow" th:each="op : ${q.options}">
+                    <div class="optdiv">
+                        <label>
+                            <input type="radio" name="q1" value="4"> <span th:text="${op.description}"></span>
+                        </label>
+                </div>
+                </div>
+                <div class="showans_div text-right mr-8" id="showans1">
+                <span class="showans_span">
+                    <button type="button" class="btn btn-primary btn-sm btn-sm">Check</button>
+                </span>
+                </div>
+                <hr class="wspacehr">
+            </div>
+        </div>
+        <button type="button" id="submitQuiz">Submit</button>
+    </form>
+</section>
+<!--<script>-->
+<!--        document.getElementById("submitQuiz").addEventListener("click", async function () {-->
+<!--            const formData = new FormData(document.getElementById("quizForm"));-->
+<!--            // Convert form data to JSON-->
+<!--            const formDataJson = {};-->
+<!--            formData.forEach((value, key) => {-->
+<!--                formDataJson[key] = value;-->
+<!--            });-->
+<!--            try {-->
+<!--                const response = await fetch("http://localhost:8181/a/user/submit-quiz", {-->
+<!--                    method: "POST",-->
+<!--                    headers: {-->
+<!--                        "Content-Type": "application/json"-->
+<!--                    },-->
+<!--                    body: JSON.stringify(formDataJson)-->
+<!--                });-->
+<!--                if (response.ok) {-->
+<!--                    console.log("Training submitted successfully!");-->
+<!--                } else {-->
+<!--                    console.error("Training submission failed.");-->
+<!--                }-->
+<!--            } catch (error) {-->
+<!--                console.error("An error occurred:", error);-->
+<!--            }-->
+<!--        });-->
+<!--</script>-->
+>>>>>>> 545b8e0 (first commit)
 </body>
 </html>
