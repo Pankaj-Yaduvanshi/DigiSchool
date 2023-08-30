@@ -1,5 +1,4 @@
 package com.smart.controller;
-
 import com.smart.entities.Assignment;
 import com.smart.entities.Option;
 import com.smart.entities.Question;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.Optional;
-
 @Controller
 @RequestMapping("/a/trainer")
 public class TrainerController {
@@ -100,15 +98,16 @@ public class TrainerController {
         return "trainer/assignment_detail";
     }
 
-//    add question to assignment
-//        @RequestMapping("/{aId}/add-question")
-//    public String addQuestion  (@PathVariable("aId") Integer aId, Model model) {
-//        Optional<Assignment> assignmentOptional = this.assignmentRepository.findById(aId);
-//        Assignment assignment = assignmentOptional.get();
-//        model.addAttribute("aId", assignment.getAId());
-//        model.addAttribute("question", new Question());
-//        return "trainer/assignment_detail";
-//    }
+//    Show Question
+@RequestMapping("/{qId}/question")
+public String showQuestionDetail(@PathVariable("qId") Integer qId, Model model) {
+    Optional<Question> questionOptional = this.questionRepository.findById(qId);
+    Question question = questionOptional.get();
+    model.addAttribute("title", question);
+    model.addAttribute("question", question);
+    return "trainer/question_detail";
+}
+
     @PostMapping("/{aId}/process-question")
     public String processQuestion(@ModelAttribute Question question, @PathVariable("aId") Integer aId,HttpSession session, Model m) {
         try {
@@ -137,12 +136,13 @@ public class TrainerController {
         return "trainer/add_option_form";
     }
     @PostMapping("/{qId}/process-option")
-    public String processOption(@ModelAttribute Option option, @PathVariable("qId") Integer qId, HttpSession session) {
+    public String processOption(@ModelAttribute Option option, @PathVariable("qId") Integer qId, HttpSession session, Model m) {
         try {
             Optional<Question> questionOptional = this.questionRepository.findById(qId);
             Question question = questionOptional.get();
             option.setQuestion(question);
             optionRepository.save(option);
+            m.addAttribute("question", question);
 //			message success.......
             session.setAttribute("message", new Message("Your Option added successfully!!!!!", "success"));
         } catch (Exception e) {
@@ -151,7 +151,7 @@ public class TrainerController {
 //          message error
             session.setAttribute("message", new Message("Something went wrong !! Try again..", "danger"));
         }
-        return "trainer/assignment_detail";
+        return "trainer/question_detail";
     }
     @RequestMapping("/training-log")
     public String trainingLog(Model model, Principal principal) {

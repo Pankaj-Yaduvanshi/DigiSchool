@@ -10,9 +10,15 @@
             <div class="container-fluid mt-1">
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
+<<<<<<< HEAD
                         <form th:object="${assignment}" enctype="multipart/form-data" method="POST"
                               th:action="@{/a/trainer/process-assignment}" class="mt-2">
                             <!-- SOP Number  -->
+=======
+                        <form th:object="${option}" enctype="multipart/form-data" method="POST"
+                              th:action="@{/a/trainer/process-option}" class="mt-2">
+                            <!-- Add Option  -->
+>>>>>>> 545b8e0 (first commit)
                             <div class="input-group mt-3">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text "><i class="fa fa-plus"></i></div>
@@ -20,6 +26,7 @@
                                 <input required type="text" id="sopNumber" name="sopNumber"
                                        placeholder="Enter SOP Number here" class="form-control"/>
                             </div>
+<<<<<<< HEAD
                             <!-- SOP Title -->
                             <div class="input-group mt-3">
                                 <div class="input-group-prepend">
@@ -44,6 +51,8 @@
                                 <input required type="text" id="version" name="questionnaireVersion"
                                        placeholder="Enter Assignment Version Here"
                                        class="form-control"/></div>
+=======
+>>>>>>> 545b8e0 (first commit)
                             <div class="container text-center">
                                 <button type="submit" class="btn btn-outline-primary mt-3">Save Assignment</button>
                             </div>
