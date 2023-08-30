@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
+<<<<<<< HEAD
       th:replace="trainer/base::layout(~{::section})">
+=======
+      th:replace="user/base::layout(~{::section})">
+>>>>>>> 545b8e0 (first commit)
 <head>
     <meta charset="UTF-8"/>
     <title>this is home page</title>
@@ -27,15 +31,23 @@
                         <th scope="col">SOP Title</th>
                         <th scope="col">Assignment No.</th>
                         <th scope="col">Assignment Version</th>
+<<<<<<< HEAD
+=======
+                        <th scope="col">Action</th>
+>>>>>>> 545b8e0 (first commit)
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="a, iterator : ${assignments}">
                         <th scope="row" th:text="${iterator.index + 1}"></th>
                         <td>
+<<<<<<< HEAD
                             <a href="#" th:href="@{'/a/trainer/'+${a.aId}}">
                                 <span th:text="${a.sopNumber}"></span>
                             </a>
+=======
+                            <span th:text="${a.sopNumber}"></span>
+>>>>>>> 545b8e0 (first commit)
                         </td>
                         <td>
                             <span th:text="${a.sopTitle}"></span>
@@ -46,6 +58,14 @@
                         <td>
                             <span th:text="${a.questionnaireVersion}"></span>
                         </td>
+<<<<<<< HEAD
+=======
+                        <td>
+                            <a href="#" th:href="@{'/a/user/'+${a.aId}+ '/exam'}">
+                                <button type="button" class="btn btn-info">Start Test</button>
+                            </a>
+                        </td>
+>>>>>>> 545b8e0 (first commit)
                     </tr>
                     </tbody>
                 </table>

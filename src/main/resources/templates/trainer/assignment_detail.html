@@ -43,22 +43,17 @@
                     <div class="card mr-3 ml-3">
                         <div class="card-header">
                             <div class="input-group-prepend">
-                                <span class="text-left">
-                                       <span th:text="${iterator.index + 1} + ')' + '  '"></span>
-                                        <span th:text="${q.description}"> </span>
-                                </span>
-                                <span class="text-right">
-                                        <a th:href="@{'/a/trainer/'+ ${q.qId} + '/add-option'}" class="icon-block">
-                                            <i class="fa fa-eye ml-2" aria-hidden="true"></i>
-                                        </a>
-                                        <a th:href="@{#}" class="icon-block">
-                                            <i class="fa fa-trash mr-2" aria-hidden="true"></i>
-                                        </a>
-
-
+                                <span th:text="${iterator.index + 1} + ')' + '  '"></span>
+                                <span th:text="${q.description}"> </span>
+                                <!-- add Option button-->
+                                <span>
+                                    <a class="btn btn-primary btn-rounded mb-4"
+                                       data-target="#modalContactForm_form_option"
+                                       data-toggle="modal" href="#" role="button" th:value ="${q.qId}">
+                                       Add Option
+                                    </a>
                                 </span>
                             </div>
-
                             <div class="input-group-prepend" th:each="op, count : ${q.options}">
                                 <div>
                                     <ul class="list-group list-group-flush">
@@ -114,6 +109,44 @@
                 </div>
                 <div class="text-center">
                     <a class="btn btn-primary btn-rounded mb-4" data-target="#modalContactForm"
+                       data-toggle="modal" href="#" role="button"
+                       th:href="@{'/a/trainer/'+ ${assignment.aId} + '/add-question' }">Add Question</a>
+                </div>
+            </div>
+            <!--             Popup form to add options for question-->
+            <div class="container">
+                <div class="modal fade" id="modalContactForm_form_option" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <form enctype="multipart/form-data" method="POST"
+                          th:action="@{'/a/trainer/'+ ${qId} + '/process-option'}" class="mt-2">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header text-center">
+                                    <h4 class="modal-title w-100 font-weight-bold">Add Option</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body mx-3">
+                                    <div class="md-form">
+                                        <label data-error="wrong" data-success="right" for="option_description">
+                                            Option Description</label>
+                                        <i class="fas fa-pencil prefix grey-text"></i>
+                                        <textarea class="md-textarea form-control" id="option_description"
+                                                  name="description"
+                                                  placeholder="Enter option here" rows="4"
+                                                  type="text"></textarea>
+                                    </div>
+                                </div>
+                                <div class="container modal-footer d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-outline-primary mt-3">Save Option</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="text-center">
+                    <a class="btn btn-primary btn-rounded mb-4" data-target="#modalContactForm_form_option"
                        data-toggle="modal" href="#" role="button"
                        th:href="@{'/a/trainer/'+ ${assignment.aId} + '/add-question' }">Add Question</a>
                 </div>
