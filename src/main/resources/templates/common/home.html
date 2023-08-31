@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:replace="base::layout(~{::section})">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
 <head>
 <meta charset="UTF-8" />
 <title>this is home page</title>
@@ -8,13 +7,18 @@
 <body>
 	<section class="banner d-flex justify-content-center align-items-center ">
 		<div class="text-center">
-			<h1 class="font-weight-bold">digischool</h1>
+			<h1 class="font-weight-bold">DigiSchool</h1>
 		    <p>
 				I am always ready to learn although I do not always like being taught.
 			</p>
-			<button class="btn bg-primary btn-lg text-white">Get Start</button>
-			
+			<a th:href="@{/signin}" href="#">
+			<button class="btn bg-primary btn-lg text-white" >Get Start</button>
+			</a>
+
 		</div>
 	</section>
+	<!--Script to add date on navbar-->
+	<script> document.getElementById('date').innerHTML=new Date();
+</script>
 </body>
 </html>
