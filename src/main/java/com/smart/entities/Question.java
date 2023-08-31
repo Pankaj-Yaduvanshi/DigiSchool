@@ -19,8 +19,6 @@ public class Question {
     private int qId;
     private String description;
     private String answer;
-    @OneToMany(mappedBy = "question",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Option> options=new ArrayList<>();
     @ManyToOne
     private Assignment assignment;
     @Override
