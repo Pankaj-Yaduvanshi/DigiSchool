@@ -35,3 +35,6 @@ build/
 !**/src/test/**/build/
 ### VS Code ###
 .vscode/
+
+application.properties
+pom.xml
