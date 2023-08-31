@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:fragment="layout(content)">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -30,10 +29,10 @@
 
 </head>
 <body>
-
 <!-- navbar -->
 <nav class=" fixed-top navbar navbar-expand-lg navbar-dark  bg-primary">
-    <a class="navbar-brand" href="#">digischool</a>
+    <a class="navbar-brand" href="#">DigiSchool</a>
+    <span id="date"></span>
     <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -68,9 +67,9 @@ END navbar -->
     <span onclick="toggleSidebar()" class="crossBtn">&times;</span>
     <a id="home-link" href="#" th:href="@{/a/user/index}" class="item active"> <i class="fas fa-home"></i> Home</a>
     <a id="contacts-link" href="#" th:href="@{/a/user/show-assignments0}" class="item"><i class="fas fa-id-card-alt"></i> Assignment</a>
-    <a id="add-link" th:href="@{/user/add-assignment}" class="item"><i class="fas fa-id-card-alt"></i> Learning History</a>
-    <a id="profile-link" href="#" th:href="@{/user/profile}" class="item"><i class="fas fa-user-circle"></i> Your Profile </a>
-    <a id="settings-link" href="#" th:href="@{/user/settings}" class="item"> <i class="fas fa-cogs"></i> Settings</a>
+    <a id="add-link" th:href="@{#}" class="item"><i class="fas fa-id-card-alt"></i> Learning History</a>
+    <a id="profile-link" href="#" th:href="@{#}" class="item"><i class="fas fa-user-circle"></i> Your Profile </a>
+    <a id="settings-link" href="#" th:href="@{#}" class="item"> <i class="fas fa-cogs"></i> Settings</a>
     <a href="#" th:href="@{/logout}" class="item"><i class="fas fa-sign-out-alt"></i> Logout</a>
     <div class="divider"></div>
 </div>
@@ -125,5 +124,8 @@ END navbar -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script th:src="@{/js/script.js}"></script>
+<!--Script to add date on navbar-->
+<script> document.getElementById('date').innerHTML=new Date();
+</script>
 </body>
 </html>

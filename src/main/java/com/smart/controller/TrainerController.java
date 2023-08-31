@@ -1,11 +1,9 @@
 package com.smart.controller;
 import com.smart.entities.Assignment;
-import com.smart.entities.Option;
 import com.smart.entities.Question;
 import com.smart.entities.User;
 import com.smart.helper.Message;
 import com.smart.repository.AssignmentRepository;
-import com.smart.repository.OptionRepository;
 import com.smart.repository.QuestionRepository;
 import com.smart.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.Optional;
@@ -31,8 +28,6 @@ public class TrainerController {
     private AssignmentRepository assignmentRepository;
     @Autowired
     private QuestionRepository questionRepository;
-    @Autowired
-    private OptionRepository optionRepository;
     // method for adding common data to response
     @ModelAttribute
     public void addCommonData(Model model, Principal principal) {
@@ -48,7 +43,7 @@ public class TrainerController {
         model.addAttribute("title", "User Dashboard");
         return "trainer/user_dashboard";
     }
-      @GetMapping("/add-assignment")
+    @GetMapping("/add-assignment")
     public String openAddAssignmentForm(Model model) {
         model.addAttribute("title", "Add Assignment");
         model.addAttribute("assignment", new Assignment());
@@ -87,7 +82,6 @@ public class TrainerController {
         m.addAttribute("srNo", srNo);
         return "trainer/show_assignments";
     }
-
     // showing assignment details.
     @RequestMapping("/{aId}")
     public String showAssignmentDetail(@PathVariable("aId") Integer aId, Model model) {
@@ -97,17 +91,15 @@ public class TrainerController {
         model.addAttribute("assignment", assignment);
         return "trainer/assignment_detail";
     }
-
 //    Show Question
-@RequestMapping("/{qId}/question")
-public String showQuestionDetail(@PathVariable("qId") Integer qId, Model model) {
+    @RequestMapping("/{qId}/question")
+    public String showQuestionDetail(@PathVariable("qId") Integer qId, Model model) {
     Optional<Question> questionOptional = this.questionRepository.findById(qId);
     Question question = questionOptional.get();
     model.addAttribute("title", question);
     model.addAttribute("question", question);
     return "trainer/question_detail";
 }
-
     @PostMapping("/{aId}/process-question")
     public String processQuestion(@ModelAttribute Question question, @PathVariable("aId") Integer aId,HttpSession session, Model m) {
         try {
@@ -126,39 +118,11 @@ public String showQuestionDetail(@PathVariable("qId") Integer qId, Model model) 
         }
         return "trainer/assignment_detail";
     }
-
-        @RequestMapping("/{qId}/add-option")
-    public String addOption  (@PathVariable("qId") Integer qId, Model model) {
-        Optional<Question> questionOptional = this.questionRepository.findById(qId);
-        Question question = questionOptional.get();
-        model.addAttribute("qId", question.getQId());
-        model.addAttribute("option", new Option());
-        return "trainer/add_option_form";
-    }
-    @PostMapping("/{qId}/process-option")
-    public String processOption(@ModelAttribute Option option, @PathVariable("qId") Integer qId, HttpSession session, Model m) {
-        try {
-            Optional<Question> questionOptional = this.questionRepository.findById(qId);
-            Question question = questionOptional.get();
-            option.setQuestion(question);
-            optionRepository.save(option);
-            m.addAttribute("question", question);
-//			message success.......
-            session.setAttribute("message", new Message("Your Option added successfully!!!!!", "success"));
-        } catch (Exception e) {
-            System.out.println("ERROR " + e.getMessage());
-            e.printStackTrace();
-//          message error
-            session.setAttribute("message", new Message("Something went wrong !! Try again..", "danger"));
-        }
-        return "trainer/question_detail";
-    }
     @RequestMapping("/training-log")
     public String trainingLog(Model model, Principal principal) {
         model.addAttribute("title", "User Dashboard");
         return "trainer/training-log";
     }
-
     @RequestMapping("/profile")
     public String profile(Model model, Principal principal) {
         model.addAttribute("title", "User Dashboard");
@@ -170,5 +134,4 @@ public String showQuestionDetail(@PathVariable("qId") Integer qId, Model model) 
         model.addAttribute("template", "user");
         return "common/settings";
     }
-
 }
