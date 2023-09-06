@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.smart</groupId>
-	<artifactId>smartcontactmanager</artifactId>
+	<artifactId>DigiSchool</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>smartcontactmanager</name>
+	<name>DigiSchool</name>
 	<description>first spring boot project</description>
 
 	<properties>
