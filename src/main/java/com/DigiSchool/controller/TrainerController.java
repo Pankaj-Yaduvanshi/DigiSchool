@@ -89,24 +89,12 @@ public class TrainerController {
         model.addAttribute("assignment", assignment);
         return "trainer/assignment_detail";
     }
-//    Show Question
-    @RequestMapping("/{qId}/question")
-    public String showQuestionDetail(@PathVariable("qId") Integer qId, Model model) {
-    Optional<Question> questionOptional = this.questionRepository.findById(qId);
-    Question question = questionOptional.get();
-    model.addAttribute("title", question);
-    model.addAttribute("question", question);
-    return "trainer/question_detail";
-}
     @PostMapping("/{aId}/process-question")
     public String processQuestion(@ModelAttribute Question question, @PathVariable("aId") Integer aId, HttpSession session, Model m) {
         try {
-            for(String s:question.getOptions()){
-                System.out.println("---------------------------------------------------->>>>>" +s);
-            }
             Optional<Assignment> assignmentOptional = this.assignmentRepository.findById(aId);
             Assignment assignment = assignmentOptional.get();
-            question.setAssignmentId(aId);
+            question.setAssignment(assignment);
             questionRepository.save(question);
             m.addAttribute("assignment", assignment);
 //			message success.......

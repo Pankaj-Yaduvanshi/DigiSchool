@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -21,7 +22,9 @@ public class Assignment {
         private String questionnaireNumber;
         private String questionnaireVersion;
 //        @OneToMany(mappedBy = "assignment",cascade = CascadeType.ALL, orphanRemoval = true)
-        @Transient
-        private List<Question> questions;
+//        @Transient
+//        private List<Question> questions;
+        @OneToMany(mappedBy = "assignment",cascade = CascadeType.ALL,orphanRemoval = true)
+        private List<Question> questions=new ArrayList<>();
 
 }

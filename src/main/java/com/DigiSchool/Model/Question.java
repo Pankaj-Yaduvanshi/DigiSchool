@@ -19,8 +19,8 @@ public class Question {
     private String description;
     private String answer;
     private String[] options;
-//    @ManyToOne
-    private Integer assignmentId;
+    @ManyToOne
+    private Assignment assignment;
     @Override
     public boolean equals(Object obj) {
         // TODO Auto-generated method stub

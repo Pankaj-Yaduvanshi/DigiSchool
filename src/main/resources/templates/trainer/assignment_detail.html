@@ -45,21 +45,13 @@
                             <div class="input-group-prepend">
                                 <span th:text="${iterator.index + 1} + ')' + '  '"></span>
                                 <span th:text="${q.description}"> </span>
-                                <!-- add Option button-->
-                                <span>
-                                    <a class="btn btn-primary btn-rounded mb-4"
-                                       data-target="#modalContactForm_form_option"
-                                       data-toggle="modal" href="#" role="button" th:value ="${q.qId}">
-                                       Add Option
-                                    </a>
-                                </span>
                             </div>
                             <div class="input-group-prepend" th:each="op, count : ${q.options}">
                                 <div>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">
                                             <span th:text="${count.index + 1} + ')' + '  '"></span>
-                                            <span th:text="${op.description}"> </span>
+                                            <span th:text="${op}"> </span>
                                         </li>
                                     </ul>
                                 </div>
@@ -104,30 +96,24 @@
 
                                         <script>
                                             var optionCount = 0; // Initialize option count
-
                                             document.getElementById("add-option").addEventListener("click", function () {
                                                 var optionsContainer = document.getElementById("options-container");
-
                                                 // Create a new div element for each option
                                                 var newDiv = document.createElement("div");
                                                 newDiv.classList.add("md-form");
-
                                                 // Create an input element for the option
                                                 var input = document.createElement("input");
                                                 input.type = "text";
                                                 input.name = "options[" + optionCount + "]"; // Use array syntax
                                                 input.classList.add("form-control");
                                                 input.required = true;
-
                                                 // Append the input to the new div
                                                 newDiv.appendChild(input);
-
                                                 // Append the new div to the options container
                                                 optionsContainer.appendChild(newDiv);
-
                                                 optionCount++; // Increment the option count
                                             });
-                                        </script>
+                                            </script>
                                     </div>
                                     <div class="container modal-footer d-flex justify-content-center">
                                         <button type="submit" class="btn btn-outline-primary mt-3">Save Question</button>
@@ -135,53 +121,8 @@
                                 </div>
                             </div>
                         </form>
-
                 </div>
-<!--                <div class="text-center">-->
-<!--                    <a class="btn btn-primary btn-rounded mb-4" data-target="#modalContactForm" data-toggle="modal" href="#"-->
-<!--                       role="button" th:href="@{'/a/trainer/' + ${assignment.assignmentId} + '/add-question'}">Add Question</a>-->
-<!--                </div>-->
             </div>
-
-
-            <!--             Popup form to add options for question-->
-<!--            <div class="container">-->
-<!--                <div class="modal fade" id="modalContactForm_form_option" tabindex="-1" role="dialog"-->
-<!--                     aria-labelledby="myModalLabel" aria-hidden="true">-->
-<!--                    <form enctype="multipart/form-data" method="POST"-->
-<!--                          th:action="@{'/a/trainer/'+ ${qId} + '/process-option'}" class="mt-2">-->
-<!--                        <div class="modal-dialog" role="document">-->
-<!--                            <div class="modal-content">-->
-<!--                                <div class="modal-header text-center">-->
-<!--                                    <h4 class="modal-title w-100 font-weight-bold">Add Option</h4>-->
-<!--                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                                        <span aria-hidden="true">&times;</span>-->
-<!--                                    </button>-->
-<!--                                </div>-->
-<!--                                <div class="modal-body mx-3">-->
-<!--                                    <div class="md-form">-->
-<!--                                        <label data-error="wrong" data-success="right" for="option_description">-->
-<!--                                            Option Description</label>-->
-<!--                                        <i class="fas fa-pencil prefix grey-text"></i>-->
-<!--                                        <textarea class="md-textarea form-control" id="option_description"-->
-<!--                                                  name="description"-->
-<!--                                                  placeholder="Enter option here" rows="4"-->
-<!--                                                  type="text"></textarea>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="container modal-footer d-flex justify-content-center">-->
-<!--                                    <button type="submit" class="btn btn-outline-primary mt-3">Save Option</button>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--                <div class="text-center">-->
-<!--                    <a class="btn btn-primary btn-rounded mb-4" data-target="#modalContactForm_form_option"-->
-<!--                       data-toggle="modal" href="#" role="button"-->
-<!--                       th:href="@{'/a/trainer/'+ ${assignment.assignmentId} + '/add-question' }">Add Question</a>-->
-<!--                </div>-->
-<!--            </div>-->
         </div>
     </div>
     <h1 class="text-center p-3 bg-danger text-white" th:unless="${assignment}">
