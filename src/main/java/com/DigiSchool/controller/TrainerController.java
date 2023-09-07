@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 @Controller
 @RequestMapping("/a/trainer")
@@ -98,13 +99,16 @@ public class TrainerController {
     return "trainer/question_detail";
 }
     @PostMapping("/{aId}/process-question")
-    public String processQuestion(@ModelAttribute Question question, @PathVariable("aId") Integer aId,HttpSession session, Model m) {
+    public String processQuestion(@ModelAttribute Question question, @PathVariable("aId") Integer aId, HttpSession session, Model m) {
         try {
-//            Optional<Assignment> assignmentOptional = this.assignmentRepository.findById(aId);
-//            Assignment assignment = assignmentOptional.get();
-//            System.out.println(assignment);
-//            question.setAssignmentId(aId);
-//            questionRepository.save(question);
+            System.out.println(question);
+            Optional<Assignment> assignmentOptional = this.assignmentRepository.findById(aId);
+            Assignment assignment = assignmentOptional.get();
+            System.out.println(assignment);
+            question.setAssignmentId(aId);
+//            String[] stringArray = options.toArray(new String[0]);
+//            question.setOptions(stringArray);
+            questionRepository.save(question);
 //            System.out.println(question);
 //            m.addAttribute("assignment", assignment);
 //			message success.......

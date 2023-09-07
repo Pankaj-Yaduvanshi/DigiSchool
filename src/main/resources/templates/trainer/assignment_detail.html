@@ -82,67 +82,65 @@
                      aria-hidden="true">
                     <form enctype="multipart/form-data" method="POST"
                           th:action="@{'/a/trainer/' + ${assignment.assignmentId} + '/process-question'}" class="mt-2">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header text-center">
-                                    <h4 class="modal-title w-100 font-weight-bold">Add Question</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body mx-3">
-                                    <div class="md-form">
-                                        <label data-error="wrong" data-success="right" for="description">Question Description</label>
-                                        <i class="fas fa-pencil prefix grey-text"></i>
-                                        <textarea class="md-textarea form-control" id="description" name="description"
-                                                  placeholder="Enter question here" rows="4" type="text"></textarea>
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header text-center">
+                                        <h4 class="modal-title w-100 font-weight-bold">Add Question</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                    <div id="options" name="options">
-                                        <!-- Input fields will be generated here -->
+                                    <div class="modal-body mx-3">
+                                        <div class="md-form">
+                                            <label data-error="wrong" data-success="right" for="description">Question Description</label>
+                                            <i class="fas fa-pencil prefix grey-text"></i>
+                                            <textarea class="md-textarea form-control" id="description" name="description" placeholder="Enter question here" rows="4" type="text"></textarea>
+                                        </div>
+                                        <div id="options-container">
+                                            <!-- Input fields will be generated here -->
+                                        </div>
+
+                                        <button type="button" id="add-option">Add Option</button>
+
+                                        <script>
+                                            var optionCount = 0; // Initialize option count
+
+                                            document.getElementById("add-option").addEventListener("click", function () {
+                                                var optionsContainer = document.getElementById("options-container");
+
+                                                // Create a new div element for each option
+                                                var newDiv = document.createElement("div");
+                                                newDiv.classList.add("md-form");
+
+                                                // Create an input element for the option
+                                                var input = document.createElement("input");
+                                                input.type = "text";
+                                                input.name = "options[" + optionCount + "]"; // Use array syntax
+                                                input.classList.add("form-control");
+                                                input.required = true;
+
+                                                // Append the input to the new div
+                                                newDiv.appendChild(input);
+
+                                                // Append the new div to the options container
+                                                optionsContainer.appendChild(newDiv);
+
+                                                optionCount++; // Increment the option count
+                                            });
+                                        </script>
                                     </div>
-
-                                    <button id="add-option">Add Option</button>
-
-                                    <script>
-                                        document.getElementById("add-option").addEventListener("click", function () {
-                                            var optionsContainer = document.getElementById("options");
-
-                                            // Create a new div element for each option
-                                            var newDiv = document.createElement("div");
-                                            newDiv.classList.add("md-form");
-
-                                            // Create a label element
-                                            var label = document.createElement("label");
-                                            label.textContent = "Option " + (options.childElementCount + 1);
-
-                                            // Create an input element
-                                            var input = document.createElement("input");
-                                            input.type = "text";
-                                            input.name = "options[]"; // Use an array for input names to collect all values
-                                            input.classList.add("form-control");
-                                            input.required = true;
-
-                                            // Append label and input to the new div
-                                            newDiv.appendChild(label);
-                                            newDiv.appendChild(input);
-
-                                            // Append the new div to the options container
-                                            options.appendChild(newDiv);
-                                        });
-                                    </script>
-
-                                </div>
-                                <div class="container modal-footer d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-outline-primary mt-3">Save Question</button>
+                                    <div class="container modal-footer d-flex justify-content-center">
+                                        <button type="submit" class="btn btn-outline-primary mt-3">Save Question</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+
                 </div>
-                <div class="text-center">
-                    <a class="btn btn-primary btn-rounded mb-4" data-target="#modalContactForm" data-toggle="modal" href="#"
-                       role="button" th:href="@{'/a/trainer/' + ${assignment.assignmentId} + '/add-question'}">Add Question</a>
-                </div>
+<!--                <div class="text-center">-->
+<!--                    <a class="btn btn-primary btn-rounded mb-4" data-target="#modalContactForm" data-toggle="modal" href="#"-->
+<!--                       role="button" th:href="@{'/a/trainer/' + ${assignment.assignmentId} + '/add-question'}">Add Question</a>-->
+<!--                </div>-->
             </div>
 
 
