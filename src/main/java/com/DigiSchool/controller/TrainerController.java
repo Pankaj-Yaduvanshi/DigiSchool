@@ -101,16 +101,14 @@ public class TrainerController {
     @PostMapping("/{aId}/process-question")
     public String processQuestion(@ModelAttribute Question question, @PathVariable("aId") Integer aId, HttpSession session, Model m) {
         try {
-            System.out.println(question);
+            for(String s:question.getOptions()){
+                System.out.println("---------------------------------------------------->>>>>" +s);
+            }
             Optional<Assignment> assignmentOptional = this.assignmentRepository.findById(aId);
             Assignment assignment = assignmentOptional.get();
-            System.out.println(assignment);
             question.setAssignmentId(aId);
-//            String[] stringArray = options.toArray(new String[0]);
-//            question.setOptions(stringArray);
             questionRepository.save(question);
-//            System.out.println(question);
-//            m.addAttribute("assignment", assignment);
+            m.addAttribute("assignment", assignment);
 //			message success.......
             session.setAttribute("message", new Message("Your Question added successfully!!!!!", "success"));
         } catch (Exception e) {
