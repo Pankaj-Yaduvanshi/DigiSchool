@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="trainer/base::layout(~{::section})">
+      th:replace="regular/base::layout(~{::section})">
 <head>
     <meta charset="UTF-8"/>
     <title>this is home page</title>
@@ -27,15 +27,14 @@
                         <th scope="col">SOP Title</th>
                         <th scope="col">Assignment No.</th>
                         <th scope="col">Assignment Version</th>
+                        <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="a, iterator : ${assignments}">
                         <th scope="row" th:text="${iterator.index + 1}"></th>
                         <td>
-                            <a href="#" th:href="@{'/a/trainer/'+${a.assignmentId}}">
-                                <span th:text="${a.sopNumber}"></span>
-                            </a>
+                            <span th:text="${a.sopNumber}"></span>
                         </td>
                         <td>
                             <span th:text="${a.sopTitle}"></span>
@@ -45,6 +44,11 @@
                         </td>
                         <td>
                             <span th:text="${a.questionnaireVersion}"></span>
+                        </td>
+                        <td>
+                            <a th:href="@{'/a/regular/' + ${a.assignmentId} + '/exam'}">
+                                <button type="button" class="btn btn-info btn-sm">Start Exam</button>
+                            </a>
                         </td>
                     </tr>
                     </tbody>
@@ -72,7 +76,6 @@
           $(".item").removeClass("active");
           $("#contacts-link").addClass("active");
         });
-
     </script>
 </section>
 </body>

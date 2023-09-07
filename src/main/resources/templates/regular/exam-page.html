@@ -1,94 +1,35 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="user/base::layout(~{::section})">
+      th:replace="regular/base::layout(~{::section})">
 <head>
     <meta charset="UTF-8"/>
     <title>this is home page</title>
 </head>
 <body>
 <section>
-<<<<<<< HEAD
-    <div class="quswrap">
-        <div class="quslist">
-            <div class="qus_txt">1. When a number is subtracted from the number 8,12 and 20, the remainders are in continued proportion, Find the number ?</div>
-        </div>
-        <br>
-        <div class="optrow">
-            <div class="optdiv"><input type="radio" name="optionset1" id="optionset1_1" value="" onclick="if (!window.__cfRLUnblockHandlers) return false; optchkd(1,1,'1_1',1,'explain1');"> <label for="optionset1_1">4</label><img class="valid_img" id="right1_1" src="https://img4.fresherslive.com/mock/right_icon.webp"><img class="valid_img" id="wrong1_1" src="https://img4.fresherslive.com/mock/wrong_icon.webp"></div>
-       </div>
-        <br><br>
-        <div class="showans_div" id="showans1"><span class="showans_span">SHOW ANSWER</span></div>
-        <div class="explanation" id="explain1">
-            <div class="exp_tit crct">Correct Ans:<span class="crct_ans">4</span></div>
-            <div class="exp_tit" id="exp_tit1">Explanation:</div>
-        </div>
-        <div class="wspacediv" id="wspace1">
-            <div class="wspacea" id="workspc1" onclick="if (!window.__cfRLUnblockHandlers) return false; javascript:workspaceDisplay('work-space1','workspc1');">
-                Workspace</div>
-            <textarea class="wspacetarea" id="work-space1"></textarea><br>
-        </div> <br>
-        <hr class="wspacehr">
-        <br><br>
-</div>
-</section>
-=======
-    <form id="quizForm" th:action="@{/a/user/submit-quiz}" method="post">
-        <div class="quswrap" >
-            <div class="quslist" th:each="q, iterator : ${assignment.questions}" style="width: 100%">
-                <div class="qus_txt">
-                    <div class=" text-center">
-                        <h5>
-                            <span>Question </span>
-                            <span th:text="${iterator.index + 1}"></span>
-                        </h5>
+    <form th:object="${assignment}" th:action="@{'a/regular/'+${aId}+'/submit-exam'}" method="post">
+        <div th:each="q, iterator : ${assignment.questions}">
+            <div class="card mr-3 ml-3">
+                <div class="card-header">
+                    <div class="input-group-prepend">
+                        <h4>
+                        <span th:text="${iterator.index + 1} + ')' + '  '"></span>
+                        <span th:text="${q.description}"> </span>
+                        </h4>
                     </div>
-                    <br>
-                    <p><span th:text="${q.description}"></span></p>
+                    <ul>
+                        <li th:each="op, count : ${q.options}">
+                            <label>
+                                <input type="radio" th:name="'answer' + ${count}" th:value="${op}" />
+                                <span th:text="${op}"></span>
+                            </label>
+                        </li>
+                    </ul>
                 </div>
-                <div class="optrow" th:each="op : ${q.options}">
-                    <div class="optdiv">
-                        <label>
-                            <input type="radio" name="q1" value="4"> <span th:text="${op.description}"></span>
-                        </label>
-                </div>
-                </div>
-                <div class="showans_div text-right mr-8" id="showans1">
-                <span class="showans_span">
-                    <button type="button" class="btn btn-primary btn-sm btn-sm">Check</button>
-                </span>
-                </div>
-                <hr class="wspacehr">
             </div>
         </div>
-        <button type="button" id="submitQuiz">Submit</button>
+        <button type="submit">Submit</button>
     </form>
 </section>
-<!--<script>-->
-<!--        document.getElementById("submitQuiz").addEventListener("click", async function () {-->
-<!--            const formData = new FormData(document.getElementById("quizForm"));-->
-<!--            // Convert form data to JSON-->
-<!--            const formDataJson = {};-->
-<!--            formData.forEach((value, key) => {-->
-<!--                formDataJson[key] = value;-->
-<!--            });-->
-<!--            try {-->
-<!--                const response = await fetch("http://localhost:8181/a/user/submit-quiz", {-->
-<!--                    method: "POST",-->
-<!--                    headers: {-->
-<!--                        "Content-Type": "application/json"-->
-<!--                    },-->
-<!--                    body: JSON.stringify(formDataJson)-->
-<!--                });-->
-<!--                if (response.ok) {-->
-<!--                    console.log("Training submitted successfully!");-->
-<!--                } else {-->
-<!--                    console.error("Training submission failed.");-->
-<!--                }-->
-<!--            } catch (error) {-->
-<!--                console.error("An error occurred:", error);-->
-<!--            }-->
-<!--        });-->
-<!--</script>-->
->>>>>>> 545b8e0 (first commit)
 </body>
 </html>
