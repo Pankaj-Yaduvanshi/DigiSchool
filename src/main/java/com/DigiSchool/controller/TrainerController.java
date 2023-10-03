@@ -81,6 +81,7 @@ public class TrainerController {
         return "trainer/show_assignments";
     }
     // showing assignment details.
+
     @RequestMapping("/{aId}")
     public String showAssignmentDetail(@PathVariable("aId") Integer aId, Model model) {
         Optional<Assignment> assignmentOptional = this.assignmentRepository.findById(aId);
@@ -88,6 +89,11 @@ public class TrainerController {
         model.addAttribute("title", assignment.getQuestionnaireNumber());
         model.addAttribute("assignment", assignment);
         return "trainer/assignment_detail";
+    }
+    @RequestMapping("/{aId}/{qId}")
+    public String deleteQuestion(@PathVariable("aId") Integer aId, @PathVariable("qId") Integer qId) {
+        questionRepository.deleteById(qId);
+        return "redirect:/"+ "a/trainer/" + aId;
     }
     @PostMapping("/{aId}/process-question")
     public String processQuestion(@ModelAttribute Question question, @PathVariable("aId") Integer aId, HttpSession session, Model m) {

@@ -21,10 +21,8 @@ public class Assignment {
         private String sopNumber;
         private String questionnaireNumber;
         private String questionnaireVersion;
-//        @OneToMany(mappedBy = "assignment",cascade = CascadeType.ALL, orphanRemoval = true)
-//        @Transient
-//        private List<Question> questions;
         @OneToMany(mappedBy = "assignment",cascade = CascadeType.ALL,orphanRemoval = true)
         private List<Question> questions=new ArrayList<>();
+
 
 }

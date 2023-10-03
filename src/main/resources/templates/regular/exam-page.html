@@ -3,12 +3,12 @@
       th:replace="regular/base::layout(~{::section})">
 <head>
     <meta charset="UTF-8"/>
-    <title>this is home page</title>
+    <title>This is home page</title>
 </head>
 <body>
 <section>
-    <form th:object="${assignment}" th:action="@{'a/regular/'+${aId}+'/submit-exam'}" method="post">
-        <div th:each="q, iterator : ${assignment.questions}">
+    <form th:object="${assignment}" th:action="@{'/a/regular/' + ${aId} + '/submit-exam'}" method="post">
+    <div th:each="q, iterator : ${assignment.questions}">
             <div class="card mr-3 ml-3">
                 <div class="card-header">
                     <div class="input-group-prepend">
@@ -20,7 +20,7 @@
                     <ul>
                         <li th:each="op, count : ${q.options}">
                             <label>
-                                <input type="radio" th:name="'answer' + ${count}" th:value="${op}" />
+                                <input type="radio" th:name="${q.qId}" th:value="${op}" />
                                 <span th:text="${op}"></span>
                             </label>
                         </li>

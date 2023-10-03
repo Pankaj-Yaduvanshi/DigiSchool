@@ -13,10 +13,9 @@
                         <p class="text-center" th:text="${session.message.content}"></p>
                         <th:block th:text="${#session.removeAttribute('message')}"></th:block>
                     </div>
-                    <div class="container text-center"><img class="" style="width: 80px;" src=""
-                                                            th:src="@{/img/membership.png}" alt=""/></div>
+                    <div class="container text-center"><img class="" style="width: 80px;" src="" th:src="@{/img/membership.png}" alt=""/></div>
                     <h1 class="text-center">Add User !!</h1>
-                    <form novalidate action="" th:action="@{/do_register}" method="post" th:object="${user}">
+                    <form novalidate action="" th:action="@{/a/admin/do_register}" method="post" th:object="${user}">
                         <!-- name field  -->
                         <div class="form-group">
                             <label for="name_field">User Name</label>
@@ -42,24 +41,18 @@
                                 required/>
                         </div>
                         <!-- User Role-->
-<!--                        <div class="form-group"><label for="role_field"> User Role</label>-->
-<!--                            <select id="role_field" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required  th:value="${user.role}">-->
-<!--                                <option selected>Select User Role</option>-->
-<!--                                <option value="1">ADMIN</option>-->
-<!--                                <option value="2">TRAINER</option>-->
-<!--                                <option value="3">USER</option>-->
-<!--                            </select>-->
-<!--                        </div>-->
+                        <div class="form-group"><label for="role_field"> User Role</label>
+                            <select id="role_field" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required  th:value="${user.role}">
+                                <option selected>Select User Role</option>
+                                <option value="1">ADMIN</option>
+                                <option value="2">TRAINER</option>
+                                <option value="3">REGULAR</option>
+                            </select>
+                        </div>
                         <!-- user about field -->
                         <div class="form-group"><textarea name="about" th:text="${user.about}"
                               placeholder="Enter something yourself" rows="6"
                               class="form-control"></textarea></div>
-                        <!-- terms and condition agreement  -->
-                        <div class="form-group form-check text-center"><input type="checkbox" name="agreement"
-                              class="form-check-input"
-                              id="agreement"/>
-                            <label for="agreement">Accept terms and conditions</label>
-                        </div>
                         <div class="container text-center">
                             <button type="submit" class="btn bg-primary  text-white">Submit</button>
                             <button type="reset" class="btn btn-warning ">Reset</button>

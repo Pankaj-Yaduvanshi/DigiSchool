@@ -24,7 +24,6 @@ public class User {
 	private String email;
 	private String password;
 	private String role;
-	private boolean enabled;
 	private String imageUrl;
 	@Column(length = 500)
 	private String about;

@@ -27,6 +27,7 @@
                         <th scope="col">SOP Title</th>
                         <th scope="col">Assignment No.</th>
                         <th scope="col">Assignment Version</th>
+                        <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -46,6 +47,18 @@
                         <td>
                             <span th:text="${a.questionnaireVersion}"></span>
                         </td>
+                        <td>
+                            <span class="mr-2">
+                                <a href="#" th:href="@{#}">
+                                    <i class="far fa-edit" style="color: #16a6e3;"></i>
+                                </a>
+                            </span>
+                            <span class="ml-auto">
+                                <a href="#" th:href="@{#}">
+                                    <i class="fa fa-trash" aria-hidden="true" style="color: red;"></i>
+                                </a>
+                            </span>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -61,7 +74,8 @@
                             th:href="@{'/a/trainer/show-assignments/'+${i-1}}" class="page-link" href="#"><span
                             th:text="${i}"></span></a></li>
                     <li th:if="${currentPage+1 != totalPages}" class="page-item"><a
-                            th:href="@{'/a/trainer/show-assignments/'+${currentPage+1}}" class="page-link" href="#">Next</a>
+                            th:href="@{'/a/trainer/show-assignments/'+${currentPage+1}}" class="page-link"
+                            href="#">Next</a>
                     </li>
                 </ul>
             </nav>
@@ -72,6 +86,10 @@
           $(".item").removeClass("active");
           $("#contacts-link").addClass("active");
         });
+
+
+
+
 
     </script>
 </section>
